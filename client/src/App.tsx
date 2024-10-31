@@ -8,26 +8,25 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div id='APP' className='w-screen h-screen bg-black flex flex-col'>
+          <header className='flex flex-row w-screen h-max bg-amber-300 space-x-2 pl-2'>
+            <div className='bg-orange-300' > LOGO </div>
+            <div className='bg-orange-300' > Nav Item 2 </div>
+            <div className='bg-orange-300' > Nav Item 3 </div>
+            <div className='bg-orange-300' > Nav Item 4 </div>
+            <div className='bg-orange-300' > Nav Item 5 </div>
+          </header>
+          <div className='flex flex-row h-full'>
+              <div id='sidebar' className='flex flex-col w-1/12 space-y-2 pt-2 bg-green-300 h-full'>
+                  <div className='bg-orange-300'> LOGO</div>
+                  <div className='bg-orange-300'> Sidebar Item 2</div>
+                  <div className='bg-orange-300'> Sidebar Item 3</div>
+                  <div className='bg-orange-300'> Sidebar Item 4</div>
+                  <div className='bg-orange-300'> Sidebar Item 5</div>
+              </div>
+              <body id='page content' className='bg-white h-full w-full'></body>
+          </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }

@@ -64,7 +64,7 @@ export default function AppSidebar() {
             </Avatar>
             <span className='text-sm font-medium'>UserName</span>
           </div>
-          <div className='flex items-center'>
+          <div className='flex justify-center'>
             <Select>
               <SelectTrigger className='w-32'>
                 <SelectValue placeholder='Language' />

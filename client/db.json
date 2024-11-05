@@ -1,11 +1,13 @@
 {
   "pokemon": [
     {
+      "id": 1,
       "urlName": "pikachu",
       "shinyRate": 0.05,
       "fromQuest": 1
     },
     {
+      "id": 2,
       "urlName": "bulbasaur",
       "shinyRate": 0.03,
       "fromQuest": 2

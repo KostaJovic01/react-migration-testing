@@ -1,13 +1,14 @@
+import {Outlet} from 'react-router-dom';
 import Sidebar from '../sidebar/Sidebar';
 import {SidebarProvider} from '../ui/sidebar';
 
-const MainLayout = ({children}: {children: React.ReactNode}) => {
+const Layout = () => {
   return (
     <SidebarProvider>
       <Sidebar />
-      <main>{children}</main>
+      <Outlet />
     </SidebarProvider>
   );
 };
 
-export default MainLayout;
+export default Layout;

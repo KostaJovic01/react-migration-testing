@@ -5,13 +5,13 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
-import DashboardLayout from '../components/layouts/Layout';
 import Inquiries from '@/pages/Inquiries';
+import Layout from '../components/layouts/Layout';
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<DashboardLayout />}>
+      <Route element={<Layout />}>
         <Route index element={<Inquiries />} />
       </Route>,
     ),

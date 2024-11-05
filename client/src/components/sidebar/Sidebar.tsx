@@ -1,8 +1,16 @@
-import {Calendar, Home, Inbox, Search, Settings} from 'lucide-react';
-
+import {Home, Settings} from 'lucide-react';
+import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -47,6 +55,29 @@ export default function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <div className='flex flex-col space-y-2'>
+          <div className='flex items-center gap-2'>
+            <Avatar>
+              <AvatarImage src='/path-to-avatar.jpg' alt='User Avatar' />
+              <AvatarFallback>U</AvatarFallback>
+            </Avatar>
+            <span className='text-sm font-medium'>UserName</span>
+          </div>
+          <div className='flex items-center'>
+            <Select>
+              <SelectTrigger className='w-32'>
+                <SelectValue placeholder='Language' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value='en'>English</SelectItem>
+                <SelectItem value='es'>Spanish</SelectItem>
+                <SelectItem value='fr'>French</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      </SidebarFooter>
     </Sidebar>
   );
 }

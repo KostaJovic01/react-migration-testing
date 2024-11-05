@@ -1,31 +1,52 @@
-import SidebarHeader from './SidebarHeader.tsx';
-import SidebarButton from './SidebarButton.tsx';
-import IconUsers from './IconUser.tsx';
+import {Calendar, Home, Inbox, Search, Settings} from 'lucide-react';
 
-type Props = {
-  children?: React.ReactNode;
-};
-const Sidebar = (props: Props) => {
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from '@/components/ui/sidebar';
+
+// Menu items.
+const items = [
+  {
+    title: 'Inquiries',
+    url: '/',
+    icon: Home,
+  },
+  {
+    title: 'Settings',
+    url: '/settings',
+    icon: Settings,
+  },
+];
+
+export default function AppSidebar() {
   return (
-    <div
-      id='sidebar'
-      className='flex flex-col w-1/4 space-y-2 justify-between pt-2 bg-gray-100 h-full'>
-      <div className={'flex flex-col space-y-2 w-full'}>
-        <SidebarHeader
-          userName={'John Doe'}
-          orgName={'Company Name'}
-          logoUrl={
-            'https://additive-account-staging.s3.eu-central-1.amazonaws.com/organizations/6907/default-512x512?ts=1729260408'
-          }
-        />
-        {props.children}
-      </div>
-      <div className={'flex flex-col'}>
-        <SidebarButton label={'Users'} icon={<IconUsers />} />
-        <SidebarButton label={'Users'} icon={<IconUsers />} />
-        <SidebarButton label={'Users'} icon={<IconUsers />} />
-      </div>
-    </div>
+    <Sidebar>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Luca's Version </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
   );
-};
-export default Sidebar;
+}

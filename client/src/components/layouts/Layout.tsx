@@ -1,5 +1,5 @@
 import Sidebar from '../sidebar/Sidebar';
-import {SidebarProvider, SidebarTrigger} from '../ui/sidebar';
+import {SidebarProvider} from '../ui/sidebar';
 
 const MainLayout = ({children}: {children: React.ReactNode}) => {
   return (

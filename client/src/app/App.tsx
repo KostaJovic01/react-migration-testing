@@ -5,7 +5,7 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
-import DashboardLayout from '../components/layouts/DashboardLayout';
+import DashboardLayout from '../components/layouts/Layout';
 import Inquiries from '@/pages/Inquiries';
 
 function App() {

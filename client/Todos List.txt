@@ -1,0 +1,21 @@
+tsdrpfc
+
+1.) Lets install shadcn Done 
+1.) Add the Sidebar Done
+    1.) Add Bottom Placeholder for user info info Done
+    2.) Add a Language Placeholder Selector Done
+2.) Add the Inquiries Page Done
+    1.) Add middle Container Done
+    2.) Add single items including: 
+        - Status Button
+            - Input: 
+                Progress
+                    - Sets styling
+                Size
+                    - Sets text addition, i think thats all
+        - Label
+        - Lower Label
+3.) Mock api 
+    - Add Inquiries get request
+
+4.) Check out fetching 

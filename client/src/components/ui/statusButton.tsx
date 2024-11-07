@@ -5,23 +5,16 @@ export interface IStatusButtonProps {
 
 export default function StatusButton({progress, size}: IStatusButtonProps) {
   return (
-    <div>
+    <>
       <div
-        className={`bg-${
+        className={`h-20px w-20px bg-${
           progress === 'pending'
-            ? 'yellow'
+            ? 'uiColorYellow'
             : progress === 'approved'
-            ? 'green'
-            : 'red'
-        }-500 text-white font-bold py-2 px-4 rounded ${
-          size === 'small'
-            ? 'text-sm'
-            : size === 'medium'
-            ? 'text-md'
-            : 'text-lg'
-        }`}>
-        {size !== 'small' && progress}
-      </div>
-    </div>
+            ? 'uiColorGreen'
+            : 'uiColorRed'
+        } text-white font-bold py-2 px-4 rounded`}></div>
+      <div>{size !== 'small' && progress}</div>
+    </>
   );
 }

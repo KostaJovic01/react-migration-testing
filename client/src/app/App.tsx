@@ -7,8 +7,10 @@ import {
 
 import Inquiries from '@/pages/Inquiries';
 import Layout from '../components/layouts/Layout';
+import {startMirageServer} from '../../mirage/config';
 
 function App() {
+  startMirageServer();
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route element={<Layout />}>

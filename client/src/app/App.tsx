@@ -9,7 +9,9 @@ import Inquiries from '@/pages/Inquiries';
 import Layout from '../components/layouts/Layout';
 import {startMirageServer} from '../../mirage/config';
 import InquiryDetails from '@/pages/InquiriesDetail';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+const queryClient = new QueryClient();
 function App() {
   startMirageServer();
   const router = createBrowserRouter(
@@ -28,7 +30,11 @@ function App() {
     ),
   );
 
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient} id='query-client'>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;

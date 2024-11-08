@@ -1,28 +1,12 @@
 import {useNavigate, useParams} from 'react-router-dom';
-import {useEffect, useState} from 'react';
-import {Enquiry} from '@/types/allTypes';
 import {Button} from '@/components/ui/button';
 import {motion, AnimatePresence} from 'framer-motion';
+import {useInquiry} from '@/stores/InquiriesStore';
 
 export default function InquiryDetails() {
   const {inquiryId} = useParams();
-  const [inquiry, setInquiry] = useState<Enquiry | null>(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    async function fetchInquiry() {
-      try {
-        const response = await fetch(`/api/inquiries/${inquiryId}`);
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-        setInquiry(data.inquiry);
-      } catch (error) {
-        console.error('Error fetching inquiry details:', error);
-      }
-    }
-
-    fetchInquiry();
-  }, [inquiryId]);
+  const {data: inquiry, isLoading, error} = useInquiry(inquiryId);
 
   if (!inquiry) return <></>;
 

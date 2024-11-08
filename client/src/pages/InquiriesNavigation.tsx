@@ -4,12 +4,13 @@ import {motion, AnimatePresence} from 'framer-motion';
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-export default function InquiriesNavigation({inquiries}) {
+export default function InquiriesNavigation({inquiries = []}) {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const filteredInquiries = inquiries.filter((inquiry) =>
-    inquiry.title.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
+  const filteredInquiries =
+    inquiries?.filter((inquiry) =>
+      inquiry.title.toLowerCase().includes(searchQuery.toLowerCase()),
+    ) ?? [];
 
   return (
     <AnimatePresence>

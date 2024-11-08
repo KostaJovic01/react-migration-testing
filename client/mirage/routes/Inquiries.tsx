@@ -5,7 +5,7 @@ export const Inquiries = (server) => {
     return {
       inquiries: Array.from({length: 10}).map(() => ({
         id: faker.string.uuid(),
-        title: faker.lorem.sentence(),
+        title: faker.lorem.sentence({min: 2, max: 4}),
         language: faker.helpers.arrayElement(['en', 'fr', 'es', 'de']),
         text: faker.datatype.boolean() ? faker.lorem.paragraph() : undefined,
         person: {

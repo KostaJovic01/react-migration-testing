@@ -8,6 +8,7 @@ import {
 import Inquiries from '@/pages/Inquiries';
 import Layout from '../components/layouts/Layout';
 import {startMirageServer} from '../../mirage/config';
+import InquiryDetails from '@/pages/InquiriesDetail';
 
 function App() {
   startMirageServer();
@@ -15,6 +16,14 @@ function App() {
     createRoutesFromElements(
       <Route element={<Layout />}>
         <Route index element={<Inquiries />} />
+        <Route
+          path='/inquiries/:inquiryId'
+          element={
+            <Inquiries>
+              <InquiryDetails />
+            </Inquiries>
+          }
+        />
       </Route>,
     ),
   );

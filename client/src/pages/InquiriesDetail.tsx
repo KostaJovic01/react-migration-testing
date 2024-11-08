@@ -18,19 +18,18 @@ export default function InquiryDetails() {
         initial={{opacity: 0, x: 50}}
         animate={{opacity: 1, x: 0}}
         exit={{opacity: 0, x: 50}}
-        transition={{duration: 0.3, ease: 'easeInOut'}}>
-        <div className='container max-w-lg mx-auto p-4'>
-          <div>
-            <Button onClick={() => navigate(`/`)}>Close</Button>
-          </div>
-          <div>
-            <StatusButton progress={inquiry.status} size='large' />
-            <div> {inquiry?.person?.name}</div>
-            <div> {inquiry?.person?.email}</div>
-            <div className='flex'>
-              <Button> Inquiry </Button>
-              <Button> Status </Button>
-            </div>
+        transition={{duration: 0.3, ease: 'easeInOut'}}
+        className='flex mx-auto p-4 border-l-2 border-gray-500 h-svh'>
+        <div>
+          <Button onClick={() => navigate(`/`)}>Close</Button>
+        </div>
+        <div>
+          <StatusButton progress={inquiry.status} size='large' />
+          <div> {inquiry?.person?.name}</div>
+          <div> {inquiry?.person?.email}</div>
+          <div className='flex'>
+            <Button> Inquiry </Button>
+            <Button> Status </Button>
           </div>
         </div>
       </motion.div>

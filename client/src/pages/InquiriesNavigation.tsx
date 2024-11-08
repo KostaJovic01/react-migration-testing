@@ -14,7 +14,7 @@ export default function InquiriesNavigation({inquiries = []}) {
 
   return (
     <AnimatePresence>
-      <div className='flex flex-col h-screen mt-10'>
+      <div className='flex flex-col h-screen mt-10 overflow-y-auto'>
         <h1 className='text-3xl font-bold text-center mb-6 mr-auto p-4'>
           Inquiries
         </h1>

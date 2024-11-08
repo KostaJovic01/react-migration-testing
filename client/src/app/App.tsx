@@ -17,7 +17,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route element={<Layout />}>
-        <Route index element={<Inquiries />} />
+        <Route index element={<Inquiries/>} />
         <Route
           path='/inquiries/:inquiryId'
           element={

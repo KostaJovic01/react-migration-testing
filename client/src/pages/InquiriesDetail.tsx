@@ -2,6 +2,7 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {Button} from '@/components/ui/button';
 import {motion, AnimatePresence} from 'framer-motion';
 import {useInquiry} from '@/stores/InquiriesStore';
+import StatusButton from '@/components/ui/statusButton';
 
 export default function InquiryDetails() {
   const {inquiryId} = useParams();
@@ -19,22 +20,18 @@ export default function InquiryDetails() {
         exit={{opacity: 0, x: 50}}
         transition={{duration: 0.3, ease: 'easeInOut'}}>
         <div className='container max-w-lg mx-auto p-4'>
-          <Button onClick={() => navigate(`/`)}>Close</Button>
-          <h1 className='text-2xl font-bold mb-4'>{inquiry.title}</h1>
-          <p>
-            <strong>Status:</strong> {inquiry.status}
-          </p>
-          <p>
-            <strong>Person:</strong> {inquiry.person.name} (
-            {inquiry.person.email})
-          </p>
-          <p>
-            <strong>Created At:</strong>{' '}
-            {new Date(inquiry.createdAt).toLocaleString()}
-          </p>
-          <p>
-            <strong>Description:</strong> {inquiry.description}
-          </p>
+          <div>
+            <Button onClick={() => navigate(`/`)}>Close</Button>
+          </div>
+          <div>
+            <StatusButton progress={inquiry.status} size='large' />
+            <div> {inquiry?.person?.name}</div>
+            <div> {inquiry?.person?.email}</div>
+            <div className='flex'>
+              <Button> Inquiry </Button>
+              <Button> Status </Button>
+            </div>
+          </div>
         </div>
       </motion.div>
     </AnimatePresence>

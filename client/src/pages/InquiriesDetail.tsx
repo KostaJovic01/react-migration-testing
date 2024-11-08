@@ -30,10 +30,10 @@ export default function InquiryDetails() {
     <AnimatePresence>
       <motion.div
         layout
-        initial={{opacity: 0}}
-        animate={{opacity: 1}}
-        exit={{opacity: 0}}
-        transition={{duration: 0.2}}>
+        initial={{opacity: 0, x: 50}}
+        animate={{opacity: 1, x: 0}}
+        exit={{opacity: 0, x: 50}}
+        transition={{duration: 0.3, ease: 'easeInOut'}}>
         <div className='container max-w-lg mx-auto p-4'>
           <Button onClick={() => navigate(`/`)}>Close</Button>
           <h1 className='text-2xl font-bold mb-4'>{inquiry.title}</h1>

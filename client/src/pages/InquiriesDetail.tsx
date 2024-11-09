@@ -19,9 +19,9 @@ export default function InquiryDetails() {
         animate={{opacity: 1, x: 0}}
         exit={{opacity: 0, x: 50}}
         transition={{duration: 0.3, ease: 'easeInOut'}}
-        className='flex mx-auto p-4 border-l-2 border-gray-500 h-svh'>
+        className='flex mx-auto p-4 border-l-2 border-gray-300 h-svh'>
         <div>
-          <Button onClick={() => navigate(`/`)}>Close</Button>
+          <Button className="bg-uiColorSecondary20" onClick={() => navigate(`/`)}>Close</Button>
         </div>
         <div>
           <StatusButton progress={inquiry.status} size='large' />

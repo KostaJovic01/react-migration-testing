@@ -3,6 +3,7 @@ import {Button} from '@/components/ui/button';
 import {motion, AnimatePresence} from 'framer-motion';
 import {useInquiry} from '@/stores/InquiriesStore';
 import StatusButton from '@/components/ui/statusButton';
+import ContentViews from '@/components/ui/contentViews';
 
 export default function InquiryDetails() {
   const {inquiryId} = useParams();
@@ -11,7 +12,7 @@ export default function InquiryDetails() {
 
   if (!inquiry) return <></>;
 
-  return (
+  const mainContent = (
     <AnimatePresence>
       <motion.div
         layout
@@ -19,7 +20,7 @@ export default function InquiryDetails() {
         animate={{opacity: 1, x: 0}}
         exit={{opacity: 0, x: 50}}
         transition={{duration: 0.3, ease: 'easeInOut'}}
-        className='flex mx-auto p-4 border-l-2 border-gray-300 h-svh'>
+        className='flex mx-auto p-4 h-svh'>
         <div>
           <Button className="bg-uiColorSecondary20" onClick={() => navigate(`/`)}>Close</Button>
         </div>
@@ -34,5 +35,11 @@ export default function InquiryDetails() {
         </div>
       </motion.div>
     </AnimatePresence>
+  );
+
+  return (
+    <>
+      <ContentViews Content={mainContent}></ContentViews>
+    </>
   );
 }

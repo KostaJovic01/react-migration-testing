@@ -3,6 +3,7 @@ import {Input} from '@/components/ui/input';
 import {motion, AnimatePresence} from 'framer-motion';
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import ContentViews from '@/components/ui/contentViews';
 
 export default function InquiriesNavigation({inquiries = []}) {
   const navigate = useNavigate();
@@ -12,9 +13,9 @@ export default function InquiriesNavigation({inquiries = []}) {
       inquiry.title.toLowerCase().includes(searchQuery.toLowerCase()),
     ) ?? [];
 
-  return (
+  const mainContent = (
     <AnimatePresence>
-      <div className='flex flex-col h-screen mt-10 overflow-y-auto'>
+      <div className='flex flex-col h-screen overflow-y-auto'>
         <h1 className='text-3xl font-bold text-center mb-6 mr-auto p-4'>
           Inquiries
         </h1>
@@ -57,5 +58,11 @@ export default function InquiriesNavigation({inquiries = []}) {
         </div>
       </div>
     </AnimatePresence>
+  );
+
+  return (
+    <>
+      <ContentViews Content={mainContent}></ContentViews>
+    </>
   );
 }

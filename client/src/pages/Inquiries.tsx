@@ -10,7 +10,7 @@ export default function Inquiries({ children }: { children: ReactNode }) {
   return (
     <>
       {(!children || windowSize?.width >= 1024) && (
-        <div className="container max-w-lg lg:max-w-5xl md:max-w-md mx-auto border-r-2 border-gray-300">
+        <div className="border-r-2 border-gray-300">
           <div className="flex justify-center">
             <InquiriesNavigation inquiries={inquiries} />
           </div>

@@ -15,7 +15,7 @@ export default function InquiriesNavigation({inquiries = []}) {
 
   const mainContent = (
     <AnimatePresence>
-      <div className='flex flex-col h-screen'>
+      <div className='flex flex-col h-screen max-w-[424px]'>
         <h1 className='text-3xl font-bold text-center mb-6 mr-auto p-4'>
           Inquiries
         </h1>

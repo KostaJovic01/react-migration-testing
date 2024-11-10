@@ -27,11 +27,15 @@ export default function InquiryDetails() {
         animate={{opacity: 1, x: 0}}
         exit={{opacity: 0, x: 50}}
         transition={{duration: 0.3, ease: 'easeInOut'}}
-        className='flex mx-auto p-4 h-svh'>
+        className='flex mx-auto h-svh '>
         <div>
-          <StatusButton progress={inquiry.status} size='large' />
-          <div> {inquiry?.person?.name}</div>
-          <div> {inquiry?.person?.email}</div>
+          <div className='pb-6'>
+            <StatusButton progress={inquiry.status} size='large' />
+          </div>
+          <div className='pb-8'>
+            <div className='text-xl font-bold'> {inquiry?.person?.name}</div>
+            <div className='pt-2 text-xl'> {inquiry?.person?.email}</div>
+          </div>
           <div className='flex'>
             <Button> Inquiry </Button>
             <Button> Status </Button>

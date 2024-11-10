@@ -50,17 +50,15 @@ function getTextColor(progress: Status) {
   }
 }
 
-//ParentBackground
-
-export default function StatusButton({progress, size}: IStatusButtonProps) {
+export default function StatusButton({progress, size, className}: IStatusButtonProps & { className?: string }) {
   const statusBallBackground = getStatusBallBackground(progress);
   const hoverColor = getHoverColor(progress);
   const textColor = getTextColor(progress);
   const parentBackground =
-    size === 'small' ? '' : `${getParentBackground(progress)} rounded-sm px-1`;
+    size === 'small' ? '' : `${getParentBackground(progress)} rounded-sm px-2 py-1`;
 
   return (
-    <div className={`flex items-center ${parentBackground} rounded-sm px-2 py-1 max-w-max p-2`}>
+    <div className={`flex items-center ${parentBackground} rounded-sm px-2 py-1 max-w-max p-2 ${className}`}>
       <div
         className={`rounded-full flex items-center justify-center h-20px w-20px ${hoverColor}`}>
         <div
@@ -70,3 +68,4 @@ export default function StatusButton({progress, size}: IStatusButtonProps) {
     </div>
   );
 }
+

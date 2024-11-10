@@ -16,7 +16,7 @@ export default function Inquiries({ children }: { children: ReactNode }) {
           </div>
         </div>
       )}
-      <div>{children}</div>
+      {children}
     </>
   );
 }

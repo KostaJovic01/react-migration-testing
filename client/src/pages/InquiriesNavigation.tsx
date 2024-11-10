@@ -15,7 +15,7 @@ export default function InquiriesNavigation({inquiries = []}) {
 
   const mainContent = (
     <AnimatePresence>
-      <div className='flex flex-col h-screen max-w-[424px]'>
+      <div className='flex flex-col h-screen min-w-[424px] w-2/5 max-w-[560px]'>
         <h1 className='text-3xl font-bold text-center mb-6 mr-auto p-4'>
           Inquiries
         </h1>
@@ -60,9 +60,5 @@ export default function InquiriesNavigation({inquiries = []}) {
     </AnimatePresence>
   );
 
-  return (
-    <>
-      <ContentViews Content={mainContent}></ContentViews>
-    </>
-  );
+  return <ContentViews Content={mainContent}></ContentViews>;
 }

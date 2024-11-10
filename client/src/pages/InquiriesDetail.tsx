@@ -12,6 +12,13 @@ export default function InquiryDetails() {
 
   if (!inquiry) return <></>;
 
+  const navbarContent = (
+    <div>
+      <Button className='bg-uiColorSecondary20' onClick={() => navigate(`/`)}>
+        Close
+      </Button>
+    </div>
+  );
   const mainContent = (
     <AnimatePresence>
       <motion.div
@@ -21,9 +28,6 @@ export default function InquiryDetails() {
         exit={{opacity: 0, x: 50}}
         transition={{duration: 0.3, ease: 'easeInOut'}}
         className='flex mx-auto p-4 h-svh'>
-        <div>
-          <Button className="bg-uiColorSecondary20" onClick={() => navigate(`/`)}>Close</Button>
-        </div>
         <div>
           <StatusButton progress={inquiry.status} size='large' />
           <div> {inquiry?.person?.name}</div>
@@ -39,7 +43,7 @@ export default function InquiryDetails() {
 
   return (
     <>
-      <ContentViews Content={mainContent}></ContentViews>
+      <ContentViews Content={mainContent} NavBar={navbarContent}></ContentViews>
     </>
   );
 }

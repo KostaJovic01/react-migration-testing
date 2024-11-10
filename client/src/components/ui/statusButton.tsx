@@ -1,4 +1,5 @@
 import {Status} from '@/types/allTypes';
+import { capitalizeFirstLetter } from '@/utils/StringManipulation';
 
 export interface IStatusButtonProps {
   progress: Status;
@@ -19,11 +20,11 @@ function getStatusBallBackground(progress: Status) {
 function getParentBackground(progress: Status) {
   switch (progress) {
     case 'pending':
-      return 'bg-uiColorYellow40';
+      return 'bg-uiColorYellow10';
     case 'approved':
-      return 'bg-uiColorGreen40';
+      return 'bg-uiColorGreen10';
     default:
-      return 'bg-uiColorRed40';
+      return 'bg-uiColorRed10';
   }
 }
 
@@ -59,13 +60,13 @@ export default function StatusButton({progress, size}: IStatusButtonProps) {
     size === 'small' ? '' : `${getParentBackground(progress)} rounded-sm px-1`;
 
   return (
-    <div className={`flex items-center ${parentBackground} rounded-sm px-1`}>
+    <div className={`flex items-center ${parentBackground} rounded-sm px-2 py-1 max-w-max p-2`}>
       <div
         className={`rounded-full flex items-center justify-center h-20px w-20px ${hoverColor}`}>
         <div
           className={`rounded-full h-8px w-8px ${statusBallBackground}`}></div>
       </div>
-      <div className={textColor}>{size !== 'small' && progress}</div>
+      <div className={textColor}>{size !== 'small' && capitalizeFirstLetter(progress)}</div>
     </div>
   );
 }

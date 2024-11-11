@@ -5,11 +5,11 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
-import Inquiries from '@/pages/components/Inquiries/Inquiries';
+import Inquiries from '@/pages/Inquiries/Inquiries';
 import Layout from '../components/layouts/Layout';
 import {startMirageServer} from '../../mirage/config';
-import InquiryDetails from '@/pages/components/Inquiries/Detail/Detail';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import InquiryDetails from '@/pages/Inquiries/Detail/Detail';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
 function App() {
@@ -17,12 +17,12 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route element={<Layout />}>
-        <Route index element={<Inquiries/>} />
+        <Route index element={<Inquiries />} />
         <Route
           path='/inquiries/:inquiryId'
           element={
             <Inquiries>
-              <InquiryDetails tabIndex={0}/>
+              <InquiryDetails tabIndex={0} />
             </Inquiries>
           }
         />

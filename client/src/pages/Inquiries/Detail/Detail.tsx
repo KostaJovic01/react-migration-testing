@@ -7,6 +7,7 @@ import ContentViews from '@/components/ui/contentViews';
 import {Close} from '@/components/icons/Close';
 import {Delete} from '@/components/icons/Delete';
 import TabPanel from '@/components/ui/tabPanel';
+import InquiryInfo from './components/InquiryInfo';
 
 export default function InquiryDetails({tabIndex = 0}) {
   const {inquiryId} = useParams();
@@ -35,7 +36,7 @@ export default function InquiryDetails({tabIndex = 0}) {
       Content={[
         {
           buttonText: 'Inquiry',
-          content: <div>Inquiry Content</div>,
+          content: <InquiryInfo data={inquiry}></InquiryInfo>,
           route: `/inquiries/${inquiry.id}`,
         },
         {

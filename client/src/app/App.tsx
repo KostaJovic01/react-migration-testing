@@ -5,10 +5,10 @@ import {
   createRoutesFromElements,
 } from 'react-router-dom';
 
-import Inquiries from '@/pages/Inquiries';
+import Inquiries from '@/pages/components/Inquiries/Inquiries';
 import Layout from '../components/layouts/Layout';
 import {startMirageServer} from '../../mirage/config';
-import InquiryDetails from '@/pages/InquiriesDetail';
+import InquiryDetails from '@/pages/components/Inquiries/Detail/Detail';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();

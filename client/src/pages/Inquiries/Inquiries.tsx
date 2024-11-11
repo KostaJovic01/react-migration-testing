@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import InquiriesNavigation from './InquiriesNavigation';
+import InquiriesNavigation from './Navigation/Navigation';
 import { useInquiries } from '@/stores/InquiriesStore';
 import useWindowSize from '@/hooks/useWindowSize';
 

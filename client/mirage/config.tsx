@@ -1,5 +1,7 @@
 // mirage/server.js
 import {Inquiries} from './routes/Inquiries';
+import {User} from './routes/User';
+
 import {createServer} from 'miragejs';
 
 export function startMirageServer() {
@@ -7,6 +9,7 @@ export function startMirageServer() {
     routes() {
       this.namespace = 'api';
       Inquiries(this);
+      User(this);
     },
   });
 

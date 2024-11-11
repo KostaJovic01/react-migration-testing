@@ -6,8 +6,9 @@ import StatusButton from '@/components/ui/statusButton';
 import ContentViews from '@/components/ui/contentViews';
 import {Close} from '@/components/icons/Close';
 import {Delete} from '@/components/icons/Delete';
+import TabPanel from '@/components/ui/tabPanel';
 
-export default function InquiryDetails() {
+export default function InquiryDetails({tabIndex = 0}) {
   const {inquiryId} = useParams();
   const navigate = useNavigate();
   const {data: inquiry, isLoading, error} = useInquiry(inquiryId);
@@ -28,6 +29,24 @@ export default function InquiryDetails() {
     </div>
   );
 
+  const tabsContent = (
+    <TabPanel
+      initialActiveIndex={tabIndex}
+      Content={[
+        {
+          buttonText: 'Inquiry',
+          content: <div>Inquiry Content</div>,
+          route: `/inquiries/${inquiry.id}`,
+        },
+        {
+          buttonText: 'Status',
+          content: <div>Status Content</div>,
+          route: `/inquiries/${inquiry.id}/status`,
+        },
+      ]}
+    />
+  );
+
   const mainContent = (
     <AnimatePresence>
       <motion.div
@@ -45,10 +64,7 @@ export default function InquiryDetails() {
             <div className='text-xl font-bold'> {inquiry?.person?.name}</div>
             <div className='pt-2 text-xl'> {inquiry?.person?.email}</div>
           </div>
-          <div className='flex'>
-            <Button> Inquiry </Button>
-            <Button> Status </Button>
-          </div>
+          <div className='flex gap-2'>{tabsContent}</div>
         </div>
       </motion.div>
     </AnimatePresence>

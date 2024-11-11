@@ -22,7 +22,15 @@ function App() {
           path='/inquiries/:inquiryId'
           element={
             <Inquiries>
-              <InquiryDetails />
+              <InquiryDetails tabIndex={0}/>
+            </Inquiries>
+          }
+        />
+        <Route
+          path='/inquiries/:inquiryId/status'
+          element={
+            <Inquiries>
+              <InquiryDetails tabIndex={1} />
             </Inquiries>
           }
         />

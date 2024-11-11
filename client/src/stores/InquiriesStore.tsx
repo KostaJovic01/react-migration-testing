@@ -1,3 +1,4 @@
+import { sleep } from '@/lib/utils';
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
 
 export function useInquiries() {
@@ -17,6 +18,7 @@ export function useInquiry(inquiryId) {
     queryKey: ['inquiry', inquiryId],
     queryFn: async () => {
       const response = await fetch(`/api/inquiries/${inquiryId}`);
+      await sleep(200);
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
       return data.inquiry;

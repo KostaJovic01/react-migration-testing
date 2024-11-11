@@ -8,11 +8,41 @@ import {Close} from '@/components/icons/Close';
 import {Delete} from '@/components/icons/Delete';
 import TabPanel from '@/components/ui/tabPanel';
 import InquiryInfo from './components/InquiryInfo';
+import {Skeleton} from '@/components/ui/skeleton';
 
 export default function InquiryDetails({tabIndex = 0}) {
   const {inquiryId} = useParams();
   const navigate = useNavigate();
   const {data: inquiry, isLoading, error} = useInquiry(inquiryId);
+
+  if (isLoading) {
+    return (
+      <ContentViews
+        Content={
+          <div className='flex h-svh flex-col '>
+            <div>
+              <div className='pb-6'>
+                <div className='flex flex-col space-y-3'>
+                  <Skeleton className='h-[125px] w-[250px] rounded-xl' />
+                </div>
+              </div>
+              <div className='pb-8'>
+                <div className='flex flex-col space-y-3'>
+                  <Skeleton className='h-[55px] w-[250px] rounded-xl' />
+                </div>
+              </div>
+            </div>
+            <div className='flex flex-col space-y-3'>
+              <Skeleton className='h-[565px] w-[400px] rounded-xl' />
+            </div>
+          </div>
+        }
+        NavBar={
+          <div className='flex w-full'>
+          </div>
+        }></ContentViews>
+    );
+  }
 
   if (!inquiry) return <></>;
 

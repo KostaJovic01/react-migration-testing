@@ -4,9 +4,11 @@ import {motion, AnimatePresence} from 'framer-motion';
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import ContentViews from '@/components/ui/contentViews';
+import { useTranslation } from 'react-i18next';
 
 export default function InquiriesNavigation({inquiries = []}) {
   const navigate = useNavigate();
+  const {t} = useTranslation();
   const [searchQuery, setSearchQuery] = useState('');
   const filteredInquiries =
     inquiries?.filter((inquiry) =>
@@ -17,7 +19,7 @@ export default function InquiriesNavigation({inquiries = []}) {
     <AnimatePresence>
       <div className='mx-auto flex flex-col h-screen min-w-[424px] w-2/5 max-w-[560px]'>
         <h1 className='text-3xl font-bold text-center mb-6 mr-auto p-4'>
-          Inquiries
+          {t('Inquiries')}
         </h1>
         <div>
           <motion.div layout transition={{duration: 0.2}}>

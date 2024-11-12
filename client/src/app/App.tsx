@@ -10,6 +10,7 @@ import Layout from '../components/layouts/Layout';
 import {startMirageServer} from '../../mirage/config';
 import InquiryDetails from '@/pages/Inquiries/Detail/Detail';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import '@/i18n';
 
 const queryClient = new QueryClient();
 function App() {

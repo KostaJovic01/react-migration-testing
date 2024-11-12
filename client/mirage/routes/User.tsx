@@ -5,7 +5,7 @@ export const User = (server) => {
   server.get('/me', () => {
     return {
       user: {
-        id: faker.string.uuid(),
+        id: faker.number.int({min: 1, max: 100}),
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         email: faker.internet.email(),

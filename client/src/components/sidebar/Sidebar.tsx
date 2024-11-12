@@ -1,13 +1,6 @@
 import {Home, Settings} from 'lucide-react';
 import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar';
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
@@ -19,6 +12,8 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import {useUser} from '@/stores/UserStore';
+import {useLocalUserInfo} from '@/stores/LocalUserInfo';
+import LanguageSelection from './LanguageSelection';
 
 // Menu items.
 const items = [
@@ -35,14 +30,14 @@ const items = [
 ];
 
 export default function AppSidebar() {
-  // const {user} = useUserStore();
-  const {data: user, isLoading, error} = useUser();
-
+  const {data: user} = useUser();
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Luca's Version </SidebarGroupLabel>
+          <SidebarGroupLabel>
+            Luca's Version
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
@@ -63,22 +58,16 @@ export default function AppSidebar() {
         <div className='flex flex-col space-y-2'>
           <div className='flex items-center gap-2'>
             <Avatar>
-              <AvatarImage src='/path-to-avatar.jpg' alt='User Avatar' />
+              <AvatarImage
+                src={`https://i.pravatar.cc/${user?.id}`}
+                alt={user?.firstName}
+              />
               <AvatarFallback>U</AvatarFallback>
             </Avatar>
-            <span className='text-sm font-medium'>{user?.firstName}</span>
+            <span className='text-sm font-medium'>{`${user?.firstName} ${user?.lastName}`}</span>
           </div>
           <div className='flex justify-center'>
-            <Select>
-              <SelectTrigger className='w-32'>
-                <SelectValue placeholder='Language' />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value='en'>English</SelectItem>
-                <SelectItem value='es'>Spanish</SelectItem>
-                <SelectItem value='fr'>French</SelectItem>
-              </SelectContent>
-            </Select>
+            <LanguageSelection />
           </div>
         </div>
       </SidebarFooter>

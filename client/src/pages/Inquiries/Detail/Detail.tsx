@@ -9,6 +9,7 @@ import {Delete} from '@/components/icons/Delete';
 import TabPanel from '@/components/ui/tabPanel';
 import InquiryInfo from './components/InquiryInfo';
 import {Skeleton} from '@/components/ui/skeleton';
+import DeleteInquiry from './components/DeleteInquiry';
 
 export default function InquiryDetails({tabIndex = 0}) {
   const {inquiryId} = useParams();
@@ -37,10 +38,7 @@ export default function InquiryDetails({tabIndex = 0}) {
             </div>
           </div>
         }
-        NavBar={
-          <div className='flex w-full'>
-          </div>
-        }></ContentViews>
+        NavBar={<div className='flex w-full'></div>}></ContentViews>
     );
   }
 
@@ -54,9 +52,7 @@ export default function InquiryDetails({tabIndex = 0}) {
         onClick={() => navigate(`/`)}>
         <Close color='black' />
       </Button>
-      <Button className='bg-uiColorSecondary20 hover:bg-uiColorSecondary40 ml-auto'>
-        <Delete color='black' /> <div className='text-black'>Remove</div>
-      </Button>
+      <DeleteInquiry inquiryId={inquiryId} />
     </div>
   );
 

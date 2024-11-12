@@ -131,4 +131,10 @@ export const Inquiries = (server) => {
 
     return {inquiry: newInquiry};
   });
+
+  server.delete('/inquiries/:id', (schema, request) => {
+    const id = request.params.id;
+    //schema.inquiries.find(id)?.destroy();
+    return {message: `Inquiry ${id} deleted successfully`};
+  });
 };

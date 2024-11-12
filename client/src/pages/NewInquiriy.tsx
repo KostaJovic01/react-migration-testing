@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {useForm} from 'react-hook-form';
 import {zodResolver} from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -13,6 +14,8 @@ import {
 import {Label} from '@/components/ui/label';
 import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
+import {useAddInquiry} from '@/stores/InquiriesStore';
+import {useNavigate} from 'react-router-dom';
 
 // Define validation schema
 const formSchema = z.object({
@@ -23,6 +26,8 @@ const formSchema = z.object({
 });
 
 const NewInquiry = () => {
+  const navigate = useNavigate();
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const {
     register,
     handleSubmit,
@@ -31,15 +36,27 @@ const NewInquiry = () => {
     resolver: zodResolver(formSchema),
   });
 
+  const addInquiry = useAddInquiry();
   const onSubmit = (data) => {
-    console.log(data);
+    addInquiry.mutate(data, {
+      onSuccess: (result) => {
+        setIsDialogOpen(false); // Close dialog on success
+        navigate(`/inquiries/${result.inquiry.id}`);
+      },
+      onError: (error) => {
+        console.error('Error adding inquiry:', error);
+      },
+    });
   };
 
   return (
     <div>
-      <Dialog>
-        <DialogTrigger>
-          <AddButton className='fixed bottom-6 right-6' />
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogTrigger asChild>
+          <AddButton
+            onClick={() => setIsDialogOpen(true)}
+            className='fixed bottom-6 right-6'
+          />
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>

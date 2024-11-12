@@ -1,4 +1,4 @@
-import { sleep } from '@/lib/utils';
+import {sleep} from '@/lib/utils';
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
 
 export function useInquiries() {
@@ -13,7 +13,7 @@ export function useInquiries() {
   });
 }
 
-export function useInquiry(inquiryId) {
+export function useInquiry(inquiryId: string) {
   return useQuery({
     queryKey: ['inquiry', inquiryId],
     queryFn: async () => {

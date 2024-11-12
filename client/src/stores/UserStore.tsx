@@ -1,5 +1,6 @@
 import {create} from 'zustand';
 import {User} from '@/types/allTypes';
+import { useQuery } from '@tanstack/react-query';
 
 export const useUserStore = create((set) => ({
   user: {
@@ -27,3 +28,15 @@ export const useUserStore = create((set) => ({
       },
     }),
 }));
+
+export function useUser() {
+  return useQuery({
+    queryKey: ['user'],
+    queryFn: async () => {
+      const response = await fetch('/api/me');
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
+      return data?.user ?? [];
+    },
+  });
+}

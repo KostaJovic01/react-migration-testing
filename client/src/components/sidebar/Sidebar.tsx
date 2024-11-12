@@ -18,10 +18,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import {useQuery} from '@tanstack/react-query';
-import {getUser, useUser, useUserStore} from '@/stores/UserStore';
-import {User} from '@/types/allTypes';
-import { useEffect } from 'react';
+import {useUser} from '@/stores/UserStore';
 
 // Menu items.
 const items = [
@@ -38,11 +35,8 @@ const items = [
 ];
 
 export default function AppSidebar() {
-  const {user, fetchUser} = useUserStore();
-
-  useEffect(() => {
-    fetchUser();
-  }, [fetchUser]);
+  // const {user} = useUserStore();
+  const {data: user, isLoading, error} = useUser();
 
   return (
     <Sidebar>
@@ -72,7 +66,7 @@ export default function AppSidebar() {
               <AvatarImage src='/path-to-avatar.jpg' alt='User Avatar' />
               <AvatarFallback>U</AvatarFallback>
             </Avatar>
-            <span className='text-sm font-medium'>{user.firstName}</span>
+            <span className='text-sm font-medium'>{user?.firstName}</span>
           </div>
           <div className='flex justify-center'>
             <Select>

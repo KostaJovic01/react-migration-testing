@@ -62,7 +62,7 @@ export const inquiries = [
       email: 'charliewilson@example.com',
       phoneNumber: '333-456-7890',
     },
-    status: 'in_progress',
+    status: 'approved',
     createdAt: new Date().toISOString(),
   },
 ];

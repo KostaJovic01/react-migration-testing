@@ -1,6 +1,6 @@
 import {Table, TableBody, TableCell, TableRow} from '@/components/ui/table';
 
-function InquiryInfo({data}) {
+function InquiryDetail({data}) {
   return (
     <>
       <div className='text-uiColorSecondary'>Contact Information </div>
@@ -48,4 +48,4 @@ function InquiryInfo({data}) {
   );
 }
 
-export default InquiryInfo;
+export default InquiryDetail;

@@ -15,7 +15,7 @@ export function useInquiries() {
 
 export function useInquiry(inquiryId: string) {
   return useQuery({
-    queryKey: ['inquiry', inquiryId],
+    queryKey: [inquiryId],
     queryFn: async () => {
       const response = await fetch(`/api/inquiries/${inquiryId}`);
       await sleep(200);
@@ -47,18 +47,18 @@ export function useAddInquiry() {
 export function useUpdateInquiry() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async ({inquiryId, updatedInquiry}) => {
-      const response = await fetch(`/api/inquiries/${inquiryId}`, {
+    mutationFn: async (data) => {
+      const response = await fetch(`/api/inquiries/${data.id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(updatedInquiry),
+        body: JSON.stringify(data),
       });
       if (!response.ok) throw new Error('Failed to update inquiry');
       return response.json();
     },
-    onSuccess: (data, {inquiryId}) => {
-      queryClient.invalidateQueries(['inquiry', inquiryId]);
-      queryClient.invalidateQueries(['inquiries']);
+    onSuccess: ({inquiry}) => {
+      console.log('verify', inquiry.id);
+      queryClient.invalidateQueries(inquiry.id);
     },
   });
 }
@@ -73,8 +73,9 @@ export function useRemoveInquiry() {
       if (!response.ok) throw new Error('Failed to delete inquiry');
       return response.json();
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries(['inquiries']);
+    onSuccess: (inquiryId) => {
+      //TODO This is wrong
+      queryClient.invalidateQueries(inquiryId);
     },
   });
 }

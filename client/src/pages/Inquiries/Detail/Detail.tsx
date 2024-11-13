@@ -5,9 +5,8 @@ import {useInquiry} from '@/stores/InquiriesStore';
 import StatusButton from '@/components/ui/statusButton';
 import ContentViews from '@/components/ui/contentViews';
 import {Close} from '@/components/icons/Close';
-import {Delete} from '@/components/icons/Delete';
 import TabPanel from '@/components/ui/tabPanel';
-import InquiryInfo from './components/InquiryInfo';
+import InquiryInfo from './components/InquiryInfo/InquiryInfo';
 import {Skeleton} from '@/components/ui/skeleton';
 import DeleteInquiry from './components/DeleteInquiry';
 
@@ -62,7 +61,7 @@ export default function InquiryDetails({tabIndex = 0}) {
       Content={[
         {
           buttonText: 'Inquiry',
-          content: <InquiryInfo data={inquiry}></InquiryInfo>,
+          content: <InquiryInfo></InquiryInfo>,
           route: `/inquiries/${inquiry.id}`,
         },
         {

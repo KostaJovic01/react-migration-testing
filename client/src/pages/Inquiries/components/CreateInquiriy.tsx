@@ -41,7 +41,7 @@ const NewInquiry = () => {
     addInquiry.mutate(data, {
       onSuccess: (result) => {
         setIsDialogOpen(false); // Close dialog on success
-        navigate(`/inquiries/${result.inquiry.id}`);
+        navigate(`/inquiries/${result.inquiries.id}`);
       },
       onError: (error) => {
         console.error('Error adding inquiry:', error);

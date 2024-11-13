@@ -2,7 +2,9 @@ import {faker} from '@faker-js/faker';
 
 export const Inquiries = (server) => {
   // Route to get a list of inquiries
-  server.get('/inquiries', () => {
+  server.get('/inquiries', (schema) => {
+    return schema.inquiries.all();
+
     return {
       inquiries: Array.from({length: 10}).map(() => ({
         id: faker.string.uuid(),
@@ -21,23 +23,10 @@ export const Inquiries = (server) => {
   });
 
   // Route to get a single inquiry by ID
+
   server.get('/inquiries/:id', (schema, request) => {
     const {id} = request.params;
-    const inquiry = {
-      id,
-      title: faker.lorem.sentence({min: 2, max: 4}),
-      language: faker.helpers.arrayElement(['en', 'fr', 'es', 'de']),
-      text: faker.datatype.boolean() ? faker.lorem.paragraph() : undefined,
-      person: {
-        name: faker.name.fullName(),
-        email: faker.internet.email(),
-        phoneNumber: faker.phone.number(),
-      },
-      status: faker.helpers.arrayElement(['approved', 'pending', 'error']),
-      createdAt: faker.date.recent().toISOString(),
-    };
-
-    return {inquiry};
+    return schema.inquiries.find(id);
   });
 
   // Route to create a new inquiry
@@ -67,7 +56,7 @@ export const Inquiries = (server) => {
 
   server.delete('/inquiries/:id', (schema, request) => {
     const id = request.params.id;
-    //schema.inquiries.find(id)?.destroy();
+    schema.inquiries.find(id)?.destroy();
     return {message: `Inquiry ${id} deleted successfully`};
   });
 

@@ -15,13 +15,13 @@ export function useInquiries() {
 
 export function useInquiry(inquiryId: string) {
   return useQuery({
-    queryKey: [inquiryId],
+    queryKey: ['inquiry', inquiryId],
     queryFn: async () => {
       const response = await fetch(`/api/inquiries/${inquiryId}`);
       await sleep(200);
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
-      return data.inquiry;
+      return data.inquiries;
     },
   });
 }
@@ -73,9 +73,9 @@ export function useRemoveInquiry() {
       if (!response.ok) throw new Error('Failed to delete inquiry');
       return response.json();
     },
-    onSuccess: (inquiryId) => {
+    onSuccess: () => {
       //TODO This is wrong
-      queryClient.invalidateQueries(inquiryId);
+      queryClient.invalidateQueries(['inquiries']);
     },
   });
 }

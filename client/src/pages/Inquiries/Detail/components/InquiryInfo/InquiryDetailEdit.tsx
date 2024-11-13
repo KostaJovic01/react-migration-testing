@@ -5,7 +5,7 @@ import {Button} from '@/components/ui/button';
 import {Delete} from '@/components/icons/Delete';
 import {useParams} from 'react-router-dom';
 
-function InquiryDetailEdit() {
+function InquiryDetailEdit({handleToggleEdit}) {
   const updatedInquiry = useUpdateInquiry();
   const {inquiryId} = useParams();
   const {data, isLoading, error} = useInquiry(inquiryId);
@@ -120,6 +120,12 @@ function InquiryDetailEdit() {
         onClick={handleUpdateInquiry}>
         <Delete color='black' />
         <div className='text-black'>{'Save'}</div>
+      </Button>
+      <Button
+        className='bg-uiColorSecondary20 hover:bg-uiColorSecondary40 ml-auto'
+        onClick={handleToggleEdit}>
+        <Delete color='black' />
+        <div className='text-black'>{'Cancel'}</div>
       </Button>
     </>
   );

@@ -1,6 +1,13 @@
+import {Delete} from '@/components/icons/Delete';
+import {Button} from '@/components/ui/button';
 import {Table, TableBody, TableCell, TableRow} from '@/components/ui/table';
+import {useInquiry} from '@/stores/InquiriesStore';
+import {useParams} from 'react-router-dom';
 
-function InquiryDetail({data}) {
+function InquiryDetail({handleToggleEdit}) {
+  const {inquiryId} = useParams();
+  const {data, isLoading, error} = useInquiry(inquiryId);
+
   return (
     <>
       <div className='text-uiColorSecondary'>Contact Information </div>
@@ -44,6 +51,12 @@ function InquiryDetail({data}) {
           </TableRow>
         </TableBody>
       </Table>
+      <Button
+        className='bg-uiColorSecondary20 hover:bg-uiColorSecondary40 ml-auto'
+        onClick={handleToggleEdit}>
+        <Delete color='black' />
+        <div className='text-black'>{'Edit'}</div>
+      </Button>
     </>
   );
 }

@@ -14,30 +14,8 @@ export const Inquiries = (server) => {
           email: faker.internet.email(),
           phoneNumber: faker.phone.number(),
         },
-        tracking: faker.datatype.boolean()
-          ? {
-              trackingId: faker.string.uuid(),
-              status: faker.helpers.arrayElement([
-                'in_transit',
-                'delivered',
-                'returned',
-              ]),
-            }
-          : undefined,
         status: faker.helpers.arrayElement(['approved', 'pending', 'error']),
         createdAt: faker.date.recent().toISOString(),
-        roomStays: faker.datatype.boolean()
-          ? Array.from({length: faker.number.int({min: 1, max: 3})}).map(
-              () => ({
-                roomId: faker.string.uuid(),
-                checkIn: faker.date.recent().toISOString(),
-                checkOut: faker.date.soon().toISOString(),
-              }),
-            )
-          : undefined,
-        channelName: faker.datatype.boolean()
-          ? faker.company.name()
-          : undefined,
       })),
     };
   });
@@ -55,26 +33,8 @@ export const Inquiries = (server) => {
         email: faker.internet.email(),
         phoneNumber: faker.phone.number(),
       },
-      tracking: faker.datatype.boolean()
-        ? {
-            trackingId: faker.string.uuid(),
-            status: faker.helpers.arrayElement([
-              'in_transit',
-              'delivered',
-              'returned',
-            ]),
-          }
-        : undefined,
       status: faker.helpers.arrayElement(['approved', 'pending', 'error']),
       createdAt: faker.date.recent().toISOString(),
-      roomStays: faker.datatype.boolean()
-        ? Array.from({length: faker.number.int({min: 1, max: 3})}).map(() => ({
-            roomId: faker.string.uuid(),
-            checkIn: faker.date.recent().toISOString(),
-            checkOut: faker.date.soon().toISOString(),
-          }))
-        : undefined,
-      channelName: faker.datatype.boolean() ? faker.company.name() : undefined,
     };
 
     return {inquiry};
@@ -83,7 +43,6 @@ export const Inquiries = (server) => {
   // Route to create a new inquiry
   server.post('/inquiries', (schema, request) => {
     const attrs = JSON.parse(request.requestBody);
-
     const newInquiry = {
       id: faker.string.uuid(),
       title: attrs.title || faker.lorem.sentence({min: 2, max: 4}),
@@ -97,36 +56,10 @@ export const Inquiries = (server) => {
         email: attrs.person?.email || faker.internet.email(),
         phoneNumber: attrs.person?.phoneNumber || faker.phone.number(),
       },
-      tracking:
-        attrs.tracking ||
-        (faker.datatype.boolean()
-          ? {
-              trackingId: faker.string.uuid(),
-              status: faker.helpers.arrayElement([
-                'in_transit',
-                'delivered',
-                'returned',
-              ]),
-            }
-          : undefined),
       status:
         attrs.status ||
         faker.helpers.arrayElement(['approved', 'pending', 'error']),
       createdAt: attrs.createdAt || faker.date.recent().toISOString(),
-      roomStays:
-        attrs.roomStays ||
-        (faker.datatype.boolean()
-          ? Array.from({length: faker.number.int({min: 1, max: 3})}).map(
-              () => ({
-                roomId: faker.string.uuid(),
-                checkIn: faker.date.recent().toISOString(),
-                checkOut: faker.date.soon().toISOString(),
-              }),
-            )
-          : undefined),
-      channelName:
-        attrs.channelName ||
-        (faker.datatype.boolean() ? faker.company.name() : undefined),
     };
 
     return {inquiry: newInquiry};
@@ -162,14 +95,6 @@ export const Inquiries = (server) => {
         : undefined,
       status: faker.helpers.arrayElement(['approved', 'pending', 'error']),
       createdAt: faker.date.recent().toISOString(),
-      roomStays: faker.datatype.boolean()
-        ? Array.from({length: faker.number.int({min: 1, max: 3})}).map(() => ({
-            roomId: faker.string.uuid(),
-            checkIn: faker.date.recent().toISOString(),
-            checkOut: faker.date.soon().toISOString(),
-          }))
-        : undefined,
-      channelName: faker.datatype.boolean() ? faker.company.name() : undefined,
     };
 
     return {inquiry};

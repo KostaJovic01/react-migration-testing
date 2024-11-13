@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 import InquiriesNavigation from './Navigation/Navigation';
 import {useInquiries} from '@/stores/InquiriesStore';
 import useWindowSize from '@/hooks/useWindowSize';
-import NewInquiry from './components/NewInquiriy';
+import NewInquiry from './components/CreateInquiriy';
 
 export default function Inquiries({children}: {children: ReactNode}) {
   const {data: inquiries, isLoading, error} = useInquiries();

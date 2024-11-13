@@ -58,9 +58,8 @@ export function useUpdateInquiry() {
       if (!response.ok) throw new Error('Failed to update inquiry');
       return response.json();
     },
-    onSuccess: ({inquiry}) => {
-      console.log('verify', inquiry.id);
-      queryClient.invalidateQueries(inquiry.id);
+    onSuccess: ({inquiries}) => {
+      queryClient.invalidateQueries(inquiries.id);
       ToastService.info('Succesfully updated inquiry');
     },
   });

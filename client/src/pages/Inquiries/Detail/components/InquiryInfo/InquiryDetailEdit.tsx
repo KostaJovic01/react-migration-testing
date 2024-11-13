@@ -4,24 +4,54 @@ import {useInquiry, useUpdateInquiry} from '@/stores/InquiriesStore';
 import {Button} from '@/components/ui/button';
 import {Delete} from '@/components/icons/Delete';
 import {useParams} from 'react-router-dom';
+import {useForm} from 'react-hook-form';
+import {z} from 'zod';
+import {zodResolver} from '@hookform/resolvers/zod';
+
+const inquirySchema = z.object({
+  title: z.string().min(1, 'Title is required'),
+  language: z.string().min(1, 'Language is required'),
+  text: z.string().optional(),
+  person: z.object({
+    name: z.string().min(1, 'Person name is required'),
+    email: z.string().email('Invalid email address').optional(),
+    phoneNumber: z.string().optional(),
+  }),
+  status: z.string().optional(),
+  createdAt: z.date().optional(),
+});
 
 function InquiryDetailEdit({handleToggleEdit}) {
   const updatedInquiry = useUpdateInquiry();
   const {inquiryId} = useParams();
   const {data, isLoading, error} = useInquiry(inquiryId);
-  const handleUpdateInquiry = () => {
-    updatedInquiry.mutate(data, {
-      onSuccess: (result) => {
-        console.log('Inquiry updated:', result);
+
+  const {
+    register,
+    handleSubmit,
+    formState: {errors},
+  } = useForm({
+    resolver: zodResolver(inquirySchema),
+  });
+
+  const onSubmit = (formData) => {
+    console.log('test', formData);
+    updatedInquiry.mutate(
+      {...formData, id: inquiryId},
+      {
+        onSuccess: (result) => {
+          handleToggleEdit();
+          console.log('Inquiry updated:', result);
+        },
+        onError: (error) => {
+          console.error('Error updating inquiry:', error);
+        },
       },
-      onError: (error) => {
-        console.error('Error updating inquiry:', error);
-      },
-    });
+    );
   };
 
   return (
-    <>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className='text-uiColorSecondary'>Contact Information </div>
       <Table>
         <TableBody>
@@ -29,40 +59,48 @@ function InquiryDetailEdit({handleToggleEdit}) {
             <TableCell className='text-uiColorSecondary'>Title</TableCell>
             <TableCell>
               <Input
-                placeholder='Enter title here'
+                {...register('title')}
                 defaultValue={data.title}
-                key={`title-${data.title}`}
+                key={data.title}
+                placeholder='Enter title here'
               />
+              {errors.title && <p>{errors.title.message}</p>}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className='text-uiColorSecondary'>Language</TableCell>
             <TableCell>
               <Input
-                placeholder='Select language'
+                {...register('language')}
                 defaultValue={data.language}
-                key={`language-${data.language}`}
+                key={data.language}
+                placeholder='Select language'
               />
+              {errors.language && <p>{errors.language.message}</p>}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className='text-uiColorSecondary'>Text</TableCell>
             <TableCell>
               <Input
-                placeholder='Enter text here'
+                {...register('text')}
                 defaultValue={data.text}
-                key={`text-${data.text}`}
+                key={data.text}
+                placeholder='Enter text here'
               />
+              {errors.text && <p>{errors.text.message}</p>}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className='text-uiColorSecondary'>Person Name</TableCell>
             <TableCell>
               <Input
-                placeholder='Enter person name'
+                {...register('person.name')}
                 defaultValue={data.person?.name}
-                key={`person-name-${data.person?.name}`}
+                key={data.person?.name}
+                placeholder='Enter person name'
               />
+              {errors.person?.name && <p>{errors.person.name.message}</p>}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -71,10 +109,12 @@ function InquiryDetailEdit({handleToggleEdit}) {
             </TableCell>
             <TableCell>
               <Input
-                placeholder='Enter email address'
+                {...register('person.email')}
                 defaultValue={data.person?.email}
-                key={`person-email-${data.person?.email}`}
+                key={data.person?.email}
+                placeholder='Enter email address'
               />
+              {errors.person?.email && <p>{errors.person.email.message}</p>}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -83,20 +123,26 @@ function InquiryDetailEdit({handleToggleEdit}) {
             </TableCell>
             <TableCell>
               <Input
-                placeholder='Enter phone number'
+                {...register('person.phoneNumber')}
                 defaultValue={data.person?.phoneNumber}
-                key={`person-phone-${data.person?.phoneNumber}`}
+                key={data.person?.phoneNumber}
+                placeholder='Enter phone number'
               />
+              {errors.person?.phoneNumber && (
+                <p>{errors.person.phoneNumber.message}</p>
+              )}
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className='text-uiColorSecondary'>Status</TableCell>
             <TableCell>
               <Input
-                placeholder='Set status'
+                {...register('status')}
                 defaultValue={data.status}
-                key={`status-${data.status}`}
+                key={data.status}
+                placeholder='Set status'
               />
+              {errors.status && <p>{errors.status.message}</p>}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -109,25 +155,29 @@ function InquiryDetailEdit({handleToggleEdit}) {
                     ? new Date(data.createdAt).toLocaleString()
                     : ''
                 }
-                key={`created-at-${data.createdAt}`}
+                key={data.createdAt}
+                disabled
               />
             </TableCell>
           </TableRow>
         </TableBody>
       </Table>
-      <Button
-        className='bg-uiColorSecondary20 hover:bg-uiColorSecondary40 ml-auto'
-        onClick={handleUpdateInquiry}>
-        <Delete color='black' />
-        <div className='text-black'>{'Save'}</div>
-      </Button>
-      <Button
-        className='bg-uiColorSecondary20 hover:bg-uiColorSecondary40 ml-auto'
-        onClick={handleToggleEdit}>
-        <Delete color='black' />
-        <div className='text-black'>{'Cancel'}</div>
-      </Button>
-    </>
+      <div className='gap-2 flex'>
+        <Button
+          className='bg-uiColorSecondary20 hover:bg-uiColorSecondary40'
+          type='submit'>
+          <Delete color='black' />
+          <div className='text-black'>{'Save'}</div>
+        </Button>
+        <Button
+          className='bg-uiColorSecondary20 hover:bg-uiColorSecondary40'
+          type='button'
+          onClick={handleToggleEdit}>
+          <Delete color='black' />
+          <div className='text-black'>{'Cancel'}</div>
+        </Button>
+      </div>
+    </form>
   );
 }
 

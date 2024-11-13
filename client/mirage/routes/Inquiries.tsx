@@ -62,30 +62,8 @@ export const Inquiries = (server) => {
 
   server.put('/inquiries/:id', (schema, request) => {
     const {id} = request.params;
-    const inquiry = {
-      id,
-      title: faker.lorem.sentence({min: 2, max: 4}),
-      language: faker.helpers.arrayElement(['en', 'fr', 'es', 'de']),
-      text: faker.datatype.boolean() ? faker.lorem.paragraph() : undefined,
-      person: {
-        name: faker.name.fullName(),
-        email: faker.internet.email(),
-        phoneNumber: faker.phone.number(),
-      },
-      tracking: faker.datatype.boolean()
-        ? {
-            trackingId: faker.string.uuid(),
-            status: faker.helpers.arrayElement([
-              'in_transit',
-              'delivered',
-              'returned',
-            ]),
-          }
-        : undefined,
-      status: faker.helpers.arrayElement(['approved', 'pending', 'error']),
-      createdAt: faker.date.recent().toISOString(),
-    };
-
-    return {inquiry};
+    console.log('Using', request.requestBody);
+    const attrs = JSON.parse(request.requestBody);
+    return schema.inquiries.find(id).update(attrs);
   });
 };

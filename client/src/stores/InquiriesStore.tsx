@@ -1,4 +1,5 @@
 import {sleep} from '@/lib/utils';
+import ToastService from '@/services/Toast';
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
 
 export function useInquiries() {
@@ -40,6 +41,7 @@ export function useAddInquiry() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries(['inquiries']);
+      ToastService.info('Succesfully added inquiry');
     },
   });
 }
@@ -59,6 +61,7 @@ export function useUpdateInquiry() {
     onSuccess: ({inquiry}) => {
       console.log('verify', inquiry.id);
       queryClient.invalidateQueries(inquiry.id);
+      ToastService.info('Succesfully updated inquiry');
     },
   });
 }
@@ -76,6 +79,7 @@ export function useRemoveInquiry() {
     onSuccess: () => {
       //TODO This is wrong
       queryClient.invalidateQueries(['inquiries']);
+      ToastService.info('Succesfully deleted inquiry');
     },
   });
 }

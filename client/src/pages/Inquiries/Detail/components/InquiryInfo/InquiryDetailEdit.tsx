@@ -13,7 +13,6 @@ function InquiryDetailEdit() {
     updatedInquiry.mutate(data, {
       onSuccess: (result) => {
         console.log('Inquiry updated:', result);
-        data.user = result.user;
       },
       onError: (error) => {
         console.error('Error updating inquiry:', error);
@@ -29,7 +28,11 @@ function InquiryDetailEdit() {
           <TableRow>
             <TableCell className='text-uiColorSecondary'>Title</TableCell>
             <TableCell>
-              <Input placeholder='Enter title here' value={data.title} />
+              <Input
+                placeholder='Enter title here'
+                defaultValue={data.title}
+                key={`title-${data.title}`}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
@@ -37,14 +40,19 @@ function InquiryDetailEdit() {
             <TableCell>
               <Input
                 placeholder='Select language'
-                value={data.language}
+                defaultValue={data.language}
+                key={`language-${data.language}`}
               />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className='text-uiColorSecondary'>Text</TableCell>
             <TableCell>
-              <Input placeholder='Enter text here' value={data.text} />
+              <Input
+                placeholder='Enter text here'
+                defaultValue={data.text}
+                key={`text-${data.text}`}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
@@ -52,7 +60,8 @@ function InquiryDetailEdit() {
             <TableCell>
               <Input
                 placeholder='Enter person name'
-                value={data.person?.name}
+                defaultValue={data.person?.name}
+                key={`person-name-${data.person?.name}`}
               />
             </TableCell>
           </TableRow>
@@ -63,7 +72,8 @@ function InquiryDetailEdit() {
             <TableCell>
               <Input
                 placeholder='Enter email address'
-                value={data.person?.email}
+                defaultValue={data.person?.email}
+                key={`person-email-${data.person?.email}`}
               />
             </TableCell>
           </TableRow>
@@ -74,14 +84,19 @@ function InquiryDetailEdit() {
             <TableCell>
               <Input
                 placeholder='Enter phone number'
-                value={data.person?.phoneNumber}
+                defaultValue={data.person?.phoneNumber}
+                key={`person-phone-${data.person?.phoneNumber}`}
               />
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell className='text-uiColorSecondary'>Status</TableCell>
             <TableCell>
-              <Input placeholder='Set status' value={data.status} />
+              <Input
+                placeholder='Set status'
+                defaultValue={data.status}
+                key={`status-${data.status}`}
+              />
             </TableCell>
           </TableRow>
           <TableRow>
@@ -89,11 +104,12 @@ function InquiryDetailEdit() {
             <TableCell>
               <Input
                 placeholder='Set creation date'
-                value={
+                defaultValue={
                   data.createdAt
                     ? new Date(data.createdAt).toLocaleString()
                     : ''
                 }
+                key={`created-at-${data.createdAt}`}
               />
             </TableCell>
           </TableRow>

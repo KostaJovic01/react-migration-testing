@@ -58,7 +58,7 @@ export default function StatusButton({progress, size, className}: IStatusButtonP
     size === 'small' ? '' : `${getParentBackground(progress)} rounded-sm px-2 py-1`;
 
   return (
-    <div className={`flex items-center ${parentBackground} rounded-sm px-2 py-1 max-w-max p-2 ${className}`}>
+    <div role="status" className={`flex items-center ${parentBackground} rounded-sm px-2 py-1 max-w-max p-2 ${className}`}>
       <div
         className={`rounded-full flex items-center justify-center h-20px w-20px ${hoverColor}`}>
         <div

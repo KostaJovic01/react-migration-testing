@@ -42,7 +42,7 @@ export function useAddInquiry() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ['inquiries']});
-      ToastService.info('Succesfully added inquiry');
+      ToastService.info('Success','Succesfully added inquiry');
     },
   });
 }
@@ -61,7 +61,7 @@ export function useUpdateInquiry() {
     },
     onSuccess: ({inquiries}) => {
       queryClient.invalidateQueries(inquiries.id);
-      ToastService.info('Succesfully updated inquiry');
+      ToastService.info('Success','Succesfully updated inquiry');
     },
   });
 }
@@ -78,7 +78,7 @@ export function useRemoveInquiry() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ['inquiries']});
-      ToastService.info('Succesfully deleted inquiry');
+      ToastService.info('Success','Succesfully deleted inquiry');
     },
   });
 }

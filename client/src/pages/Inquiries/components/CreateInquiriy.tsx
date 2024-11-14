@@ -17,6 +17,7 @@ import {Button} from '@/components/ui/button';
 import {useAddInquiry} from '@/stores/InquiriesStore';
 import {useNavigate} from 'react-router-dom';
 import {newInquiry} from '@/types/allTypes';
+import ToastService from '@/services/Toast';
 
 // Define validation schema
 const formSchema = z.object({
@@ -52,6 +53,10 @@ const NewInquiry = () => {
 
   return (
     <div>
+      <AddButton
+            onClick={() => ToastService.error('Title', "Test")}
+            className='fixed bottom-6 right-12'
+          />
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogTrigger asChild>
           <AddButton

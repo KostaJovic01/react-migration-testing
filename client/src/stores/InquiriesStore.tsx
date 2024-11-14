@@ -1,6 +1,6 @@
 import {sleep} from '@/lib/utils';
 import ToastService from '@/services/Toast';
-import {Inquiry, newInquiry} from '@/types/allTypes';
+import {newInquiry, updateInquiry} from '@/types/allTypes';
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
 
 export function useInquiries() {
@@ -42,7 +42,7 @@ export function useAddInquiry() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ['inquiries']});
-      ToastService.info('Success','Succesfully added inquiry');
+      ToastService.info('Success', 'Succesfully added inquiry');
     },
   });
 }
@@ -50,7 +50,7 @@ export function useAddInquiry() {
 export function useUpdateInquiry() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (data: Inquiry) => {
+    mutationFn: async (data: updateInquiry) => {
       const response = await fetch(`/api/inquiries/${data.id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
@@ -61,7 +61,7 @@ export function useUpdateInquiry() {
     },
     onSuccess: ({inquiries}) => {
       queryClient.invalidateQueries(inquiries.id);
-      ToastService.info('Success','Succesfully updated inquiry');
+      ToastService.info('Success', 'Succesfully updated inquiry');
     },
   });
 }
@@ -78,7 +78,7 @@ export function useRemoveInquiry() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({queryKey: ['inquiries']});
-      ToastService.info('Success','Succesfully deleted inquiry');
+      ToastService.info('Success', 'Succesfully deleted inquiry');
     },
   });
 }

@@ -4,9 +4,9 @@ import {Table, TableBody, TableCell, TableRow} from '@/components/ui/table';
 import {useInquiry} from '@/stores/InquiriesStore';
 import {useParams} from 'react-router-dom';
 
-function InquiryDetail({handleToggleEdit}) {
+function InquiryDetail({handleToggleEdit}: {handleToggleEdit: () => void}) {
   const {inquiryId} = useParams();
-  const {data, isLoading, error} = useInquiry(inquiryId);
+  const {data} = useInquiry(inquiryId || '');
 
   return (
     <>

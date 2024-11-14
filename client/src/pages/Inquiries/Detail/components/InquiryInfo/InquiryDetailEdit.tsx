@@ -7,6 +7,7 @@ import {useParams} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
+import {updateInquiry} from '@/types/allTypes';
 
 const inquirySchema = z.object({
   title: z.string().min(1, 'Title is required'),
@@ -21,23 +22,26 @@ const inquirySchema = z.object({
   createdAt: z.date().optional(),
 });
 
-function InquiryDetailEdit({handleToggleEdit}) {
+function InquiryDetailEdit({handleToggleEdit}: {handleToggleEdit: () => void}) {
   const updatedInquiry = useUpdateInquiry();
   const {inquiryId} = useParams();
-  const {data, isLoading, error} = useInquiry(inquiryId);
+  const {data} = useInquiry(inquiryId || '');
 
   const {
     register,
     handleSubmit,
     formState: {errors},
-  } = useForm({
+  } = useForm<updateInquiry>({
     resolver: zodResolver(inquirySchema),
   });
 
-  const onSubmit = (formData) => {
+  const onSubmit = (formData: updateInquiry) => {
     console.log('test', formData);
     updatedInquiry.mutate(
-      {...formData, id: inquiryId},
+      {
+        ...formData,
+        id: inquiryId || '',
+      },
       {
         onSuccess: (result) => {
           handleToggleEdit();

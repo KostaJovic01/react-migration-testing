@@ -7,11 +7,11 @@ export type User = {
   //   image?: StaticImageData;
 };
 
-// type for enquiry status
+// type for Inquiry status
 export type Status = 'approved' | 'pending' | 'error';
 
-// Main type for an enquiry object
-export type Enquiry = {
+// Main type for an Inquiry object
+export type Inquiry = {
   id: string;
   title: string;
   language: string;
@@ -29,5 +29,5 @@ export type Person = {
 
 // Root type that contains all enquiries.
 export type EnquiriesData = {
-  enquiries: Enquiry[];
+  enquiries: Inquiry[];
 };

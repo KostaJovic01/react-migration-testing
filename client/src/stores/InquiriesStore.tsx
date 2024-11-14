@@ -1,5 +1,6 @@
 import {sleep} from '@/lib/utils';
 import ToastService from '@/services/Toast';
+import {Inquiry} from '@/types/allTypes';
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
 
 export function useInquiries() {
@@ -30,7 +31,7 @@ export function useInquiry(inquiryId: string) {
 export function useAddInquiry() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (newInquiry) => {
+    mutationFn: async (newInquiry: Inquiry) => {
       const response = await fetch('/api/inquiries', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -40,7 +41,7 @@ export function useAddInquiry() {
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['inquiries']);
+      queryClient.invalidateQueries({queryKey: ['inquiries']});
       ToastService.info('Succesfully added inquiry');
     },
   });
@@ -49,7 +50,7 @@ export function useAddInquiry() {
 export function useUpdateInquiry() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (data) => {
+    mutationFn: async (data: Inquiry) => {
       const response = await fetch(`/api/inquiries/${data.id}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
@@ -68,7 +69,7 @@ export function useUpdateInquiry() {
 export function useRemoveInquiry() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (inquiryId) => {
+    mutationFn: async (inquiryId: string) => {
       const response = await fetch(`/api/inquiries/${inquiryId}`, {
         method: 'DELETE',
       });
@@ -76,8 +77,7 @@ export function useRemoveInquiry() {
       return response.json();
     },
     onSuccess: () => {
-      //TODO This is wrong
-      queryClient.invalidateQueries(['inquiries']);
+      queryClient.invalidateQueries({queryKey: ['inquiries']});
       ToastService.info('Succesfully deleted inquiry');
     },
   });

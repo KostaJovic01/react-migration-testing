@@ -12,8 +12,8 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import {useUser} from '@/stores/UserStore';
-import {useLocalUserInfo} from '@/stores/LocalUserInfo';
 import LanguageSelection from './LanguageSelection';
+import { Link } from 'react-router-dom';
 
 // Menu items.
 const items = [
@@ -35,18 +35,16 @@ export default function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>
-            Luca's Version
-          </SidebarGroupLabel>
+          <SidebarGroupLabel>Luca's Version</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

@@ -4,8 +4,12 @@ import {useInquiries} from '@/stores/InquiriesStore';
 import useWindowSize from '@/hooks/useWindowSize';
 import NewInquiry from './components/CreateInquiriy';
 
-export default function Inquiries({children}: {children: ReactNode}) {
-  const {data: inquiries, isLoading, error} = useInquiries();
+type InquiriesProps = {
+  children?: ReactNode;
+};
+
+export default function Inquiries({children}: InquiriesProps) {
+  const {data: inquiries} = useInquiries();
   const windowSize = useWindowSize();
 
   return (

@@ -11,6 +11,7 @@ import {startMirageServer} from '../../mirage/config';
 import InquiryDetails from '@/pages/Inquiries/Detail/Detail';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import '@/i18n';
+import {Settings} from '@/pages/Settings/Settings';
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ function App() {
             </Inquiries>
           }
         />
+        <Route path='/settings' element={<Settings />} />
       </Route>,
     ),
   );

@@ -48,7 +48,16 @@ export type EnquiriesData = {
   enquiries: Inquiry[];
 };
 
+export type Language = 'de' | 'en';
+
 export type LocalUserInfo = {
   id: string;
-  language: 'de' | 'en';
+  language: Language;
+};
+
+export type LocalUserInfoState = {
+  localUserInfo: LocalUserInfo;
+  setUserLanguage: (language: Language) => void;
+  setUser: (newUser: LocalUserInfo) => void;
+  clearUser: () => void;
 };

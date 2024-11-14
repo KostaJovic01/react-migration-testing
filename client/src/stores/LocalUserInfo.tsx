@@ -1,28 +1,31 @@
-import {LocalUserInfo} from '@/types/allTypes';
+import {LocalUserInfo, LocalUserInfoState} from '@/types/allTypes';
 import {create} from 'zustand';
 import {persist, createJSONStorage} from 'zustand/middleware';
 
-export const useLocalUserInfo = create(
+export const useLocalUserInfo = create<LocalUserInfoState>()(
   persist(
     (set) => ({
       localUserInfo: {
         id: '',
         language: 'de',
       },
-      //Add setUserLanguage
-      setUserLanguage: (language: string) =>
-        set((state: LocalUserInfo) => ({
+      // Add setUserLanguage
+      setUserLanguage: (language) =>
+        set((state) => ({
           localUserInfo: {
-            ...state,
+            ...state.localUserInfo,
             language,
           },
         })),
-      setUser: (newUser: LocalUserInfo) => set({user: newUser}),
+      setUser: (newUser: LocalUserInfo) =>
+        set({
+          localUserInfo: newUser,
+        }),
       clearUser: () =>
         set({
           localUserInfo: {
             id: '',
-            language: '',
+            language: 'en',
           },
         }),
     }),

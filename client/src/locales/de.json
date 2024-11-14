@@ -1,3 +1,46 @@
 {
-  "Inquiries": "Anfragen"
+  "Inquiries": "Anfragen",
+  "Status": {
+    "pending": "Ausstehend",
+    "approved": "Genehmigt",
+    "rejected": "Abgelehnt"
+  },
+  "Toast": {
+    "success": {
+      "fetch": {
+        "title": "Erfolg",
+        "message": "Anfrage erfolgreich abgerufen"
+      },
+      "add": {
+        "title": "Erfolg",
+        "message": "Anfrage erfolgreich hinzugefügt"
+      },
+      "update": {
+        "title": "Erfolg",
+        "message": "Anfrage erfolgreich aktualisiert"
+      },
+      "delete": {
+        "title": "Erfolg",
+        "message": "Anfrage erfolgreich gelöscht"
+      }
+    },
+    "error": {
+      "fetch": {
+        "title": "Fehler",
+        "message": "Abrufen der Anfrage fehlgeschlagen"
+      },
+      "add": {
+        "title": "Fehler",
+        "message": "Hinzufügen der Anfrage fehlgeschlagen"
+      },
+      "update": {
+        "title": "Fehler",
+        "message": "Aktualisieren der Anfrage fehlgeschlagen"
+      },
+      "delete": {
+        "title": "Fehler",
+        "message": "Löschen der Anfrage fehlgeschlagen"
+      }
+    }
+  }
 }

@@ -1,3 +1,46 @@
 {
-  "Inquiries": "Inquiries"
+  "Inquiries": "Inquiries",
+  "Status": {
+    "pending": "Pending",
+    "approved": "Approved",
+    "rejected": "Rejected"
+  },
+  "Toast": {
+    "success": {
+      "fetch": {
+        "title": "Success",
+        "message": "Successfully fetched inquiry"
+      },
+      "add": {
+        "title": "Success",
+        "message": "Successfully added inquiry"
+      },
+      "update": {
+        "title": "Success",
+        "message": "Successfully updated inquiry"
+      },
+      "delete": {
+        "title": "Success",
+        "message": "Successfully deleted inquiry"
+      }
+    },
+    "error": {
+      "fetch": {
+        "title": "Error",
+        "message": "Failed to fetch inquiry"
+      },
+      "add": {
+        "title": "Error",
+        "message": "Failed to add inquiry"
+      },
+      "update": {
+        "title": "Error",
+        "message": "Failed to update inquiry"
+      },
+      "delete": {
+        "title": "Error",
+        "message": "Failed to delete inquiry"
+      }
+    }
+  }
 }

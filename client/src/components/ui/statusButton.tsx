@@ -1,5 +1,5 @@
 import {Status} from '@/types/allTypes';
-import { capitalizeFirstLetter } from '@/utils/StringManipulation';
+import { useTranslation } from 'react-i18next';
 
 export interface IStatusButtonProps {
   progress: Status;
@@ -52,6 +52,7 @@ function getTextColor(progress: Status) {
 
 export default function StatusButton({progress, size, className}: IStatusButtonProps & { className?: string }) {
   const statusBallBackground = getStatusBallBackground(progress);
+  const {t} = useTranslation();
   const hoverColor = getHoverColor(progress);
   const textColor = getTextColor(progress);
   const parentBackground =
@@ -64,7 +65,7 @@ export default function StatusButton({progress, size, className}: IStatusButtonP
         <div
           className={`rounded-full h-8px w-8px ${statusBallBackground}`}></div>
       </div>
-      <div className={textColor}>{size !== 'small' && capitalizeFirstLetter(progress)}</div>
+      <div className={textColor}>{size !== 'small' && t(`Status.${progress}`)}</div>
     </div>
   );
 }

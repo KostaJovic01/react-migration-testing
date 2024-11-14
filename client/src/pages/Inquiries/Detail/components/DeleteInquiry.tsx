@@ -12,13 +12,17 @@ import {useRemoveInquiry} from '@/stores/InquiriesStore';
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 
-const DeleteInquiry = ({inquiryId}) => {
+type DeleteInquiryProps = {
+  inquiryId: string;
+}
+
+const DeleteInquiry = ({inquiryId}: DeleteInquiryProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const navigate = useNavigate();
   const removeInquiry = useRemoveInquiry();
   const onRemove = () => {
     removeInquiry.mutate(inquiryId, {
-      onSuccess: (result) => {
+      onSuccess: () => {
         setIsDialogOpen(false); // Close dialog on success
         navigate(`/`);
       },

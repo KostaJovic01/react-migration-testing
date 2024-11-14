@@ -1,4 +1,5 @@
 import {faker} from '@faker-js/faker';
+import {Response} from 'miragejs';
 
 export const Inquiries = (server) => {
   // Route to get a list of inquiries
@@ -57,8 +58,10 @@ export const Inquiries = (server) => {
   });
 
   server.put('/inquiries/:id', (schema, request) => {
+    if (Math.random() < 0.5) {
+      return new Response(404);
+    }
     const {id} = request.params;
-    console.log('Using', request.requestBody);
     const attrs = JSON.parse(request.requestBody);
     return schema.inquiries.find(id).update(attrs);
   });

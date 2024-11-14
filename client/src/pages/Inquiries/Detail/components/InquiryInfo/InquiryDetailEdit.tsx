@@ -36,7 +36,6 @@ function InquiryDetailEdit({handleToggleEdit}: {handleToggleEdit: () => void}) {
   });
 
   const onSubmit = (formData: updateInquiry) => {
-    console.log('test', formData);
     updatedInquiry.mutate(
       {
         ...formData,

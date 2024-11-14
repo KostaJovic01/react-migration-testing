@@ -11,9 +11,9 @@ import DeleteInquiry from './components/DeleteInquiry';
 import ContentViews from '@/components/ui/contentViews';
 
 export default function InquiryDetails({tabIndex = 0}) {
-  const {inquiryId} = useParams();
+  const {inquiryId = ''} = useParams();
   const navigate = useNavigate();
-  const {data: inquiry, isLoading} = useInquiry(inquiryId || '');
+  const {data: inquiry, isLoading} = useInquiry(inquiryId);
 
   if (isLoading) {
     return (

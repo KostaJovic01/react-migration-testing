@@ -16,6 +16,7 @@ import {Input} from '@/components/ui/input';
 import {Button} from '@/components/ui/button';
 import {useAddInquiry} from '@/stores/InquiriesStore';
 import {useNavigate} from 'react-router-dom';
+import {newInquiry} from '@/types/allTypes';
 
 // Define validation schema
 const formSchema = z.object({
@@ -32,12 +33,12 @@ const NewInquiry = () => {
     register,
     handleSubmit,
     formState: {errors},
-  } = useForm({
+  } = useForm<newInquiry>({
     resolver: zodResolver(formSchema),
   });
 
   const addInquiry = useAddInquiry();
-  const onSubmit = (data) => {
+  const onSubmit = (data: newInquiry) => {
     addInquiry.mutate(data, {
       onSuccess: (result) => {
         setIsDialogOpen(false); // Close dialog on success
@@ -70,7 +71,7 @@ const NewInquiry = () => {
               <Label htmlFor='firstName'>First Name</Label>
               <Input id='firstName' {...register('firstName')} />
               {errors.firstName && (
-                <p className='text-red-600'>{errors.firstName.message}</p>
+                <p className='text-red-600'>{errors.firstName?.message}</p>
               )}
             </div>
             <div>

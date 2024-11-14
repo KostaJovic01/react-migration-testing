@@ -21,6 +21,13 @@ export type Inquiry = {
   createdAt: string; // ISO date format with timezone info.
 };
 
+export type newInquiry = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  language: string;
+};
+
 export type Person = {
   name: string;
   email: string;

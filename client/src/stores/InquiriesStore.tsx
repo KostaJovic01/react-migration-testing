@@ -1,6 +1,6 @@
 import {sleep} from '@/lib/utils';
 import ToastService from '@/services/Toast';
-import {Inquiry} from '@/types/allTypes';
+import {Inquiry, newInquiry} from '@/types/allTypes';
 import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
 
 export function useInquiries() {
@@ -31,7 +31,7 @@ export function useInquiry(inquiryId: string) {
 export function useAddInquiry() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (newInquiry: Inquiry) => {
+    mutationFn: async (newInquiry: newInquiry) => {
       const response = await fetch('/api/inquiries', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},

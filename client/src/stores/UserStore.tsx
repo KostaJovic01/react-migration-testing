@@ -33,6 +33,7 @@ export const useUserStore = create((set) => ({
 //We use this state management tool for persistent data that comes from the backend
 export function useUser() {
   return useQuery({
+    initialData: {firstName: 'Loading..', lastName: '', email: '', id: ''},
     queryKey: ['user'],
     queryFn: async () => {
       const response = await fetch('/api/me');

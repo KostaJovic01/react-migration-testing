@@ -7,9 +7,6 @@ const ToastService = {
   error: (message: string) => {
     toast.error(message);
   },
-  custom: (message: string, options: any) => {
-    toast(message, options);
-  },
   info: (message: string) => {
     toast.custom(
       (t) => (

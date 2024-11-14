@@ -31,3 +31,8 @@ export type Person = {
 export type EnquiriesData = {
   enquiries: Inquiry[];
 };
+
+export type LocalUserInfo = {
+  id: string;
+  language: 'de' | 'en';
+};

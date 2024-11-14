@@ -1,3 +1,4 @@
+import {LocalUserInfo} from '@/types/allTypes';
 import {create} from 'zustand';
 import {persist, createJSONStorage} from 'zustand/middleware';
 
@@ -10,13 +11,13 @@ export const useLocalUserInfo = create(
       },
       //Add setUserLanguage
       setUserLanguage: (language: string) =>
-        set((state) => ({
+        set((state: LocalUserInfo) => ({
           localUserInfo: {
-            ...state.user,
+            ...state,
             language,
           },
         })),
-      setUser: (newUser) => set({user: newUser}),
+      setUser: (newUser: LocalUserInfo) => set({user: newUser}),
       clearUser: () =>
         set({
           localUserInfo: {

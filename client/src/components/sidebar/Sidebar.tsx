@@ -30,7 +30,7 @@ const items = [
 ];
 
 export default function AppSidebar() {
-  const {data: user} = useUser();
+  const {data : user} = useUser();
   return (
     <Sidebar>
       <SidebarContent>

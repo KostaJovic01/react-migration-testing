@@ -1,10 +1,10 @@
 import {Status} from '@/types/allTypes';
 import { useTranslation } from 'react-i18next';
 
-export interface IStatusButtonProps {
+export type IStatusButtonProps = {
   progress: Status;
   size: 'small' | 'large';
-}
+};
 
 function getStatusBallBackground(progress: Status) {
   switch (progress) {

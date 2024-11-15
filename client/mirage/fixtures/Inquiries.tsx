@@ -49,7 +49,7 @@ export const inquiries = [
       email: 'alicebrown@example.com',
       phoneNumber: '444-789-1234',
     },
-    status: 'resolved',
+    status: 'rejected',
     createdAt: new Date().toISOString(),
   },
   {

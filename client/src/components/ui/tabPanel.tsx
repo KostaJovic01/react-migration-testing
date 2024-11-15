@@ -2,21 +2,18 @@ import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {Button} from './button';
 
-interface ContentItem {
+type ContentItem = {
   buttonText: string;
   content: JSX.Element;
   route: string;
-}
+};
 
-interface TabPanelProps {
+type TabPanelProps = {
   Content: ContentItem[];
   initialActiveIndex?: number;
-}
+};
 
-const TabPanel: React.FC<TabPanelProps> = ({
-  Content,
-  initialActiveIndex = 0,
-}) => {
+const TabPanel = ({Content, initialActiveIndex = 0}: TabPanelProps) => {
   const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
   const navigate = useNavigate();
 

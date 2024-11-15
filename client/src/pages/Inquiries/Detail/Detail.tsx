@@ -9,11 +9,14 @@ import InquiryInfo from './components/InquiryInfo/InquiryInfo';
 import {Skeleton} from '@/components/ui/skeleton';
 import DeleteInquiry from './components/DeleteInquiry';
 import ContentViews from '@/components/ui/contentViews';
+import { useTranslation } from 'react-i18next';
+
 
 export default function InquiryDetails({tabIndex = 0}) {
   const {inquiryId = ''} = useParams();
   const navigate = useNavigate();
   const {data: inquiry, isLoading} = useInquiry(inquiryId);
+  const {t} = useTranslation();
 
   if (isLoading) {
     return (
@@ -47,12 +50,12 @@ export default function InquiryDetails({tabIndex = 0}) {
       initialActiveIndex={tabIndex}
       Content={[
         {
-          buttonText: 'Inquiry',
+          buttonText: t('Tabs.Inquiry'),
           content: <InquiryInfo></InquiryInfo>,
           route: `/inquiries/${inquiry.id}`,
         },
         {
-          buttonText: 'Status',
+          buttonText: t('Tabs.Status'),
           content: <div>Status Content</div>,
           route: `/inquiries/${inquiry.id}/status`,
         },

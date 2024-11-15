@@ -1,4 +1,8 @@
 {
+  "Tabs": {
+    "Inquiry": "Anfragen",
+    "Status": "Status"
+  },
   "Inquiries": "Anfragen",
   "Status": {
     "pending": "Ausstehend",
